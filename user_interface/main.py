@@ -22,7 +22,14 @@ def receive_command():
     with m as source: audio = r.listen(source)
     try:
         value = r.recognize_google(audio)
-        print(u"Output: {}".format(value).encode('utf-8'))
+        uri = value.replace(" ", "_")
+        response = requests.get('http://127.0.0.1:8000/{}'.format(uri))
+
+        if response.status_code != 200:
+            print("Command does not exist")
+        else:
+            print(response.text)
+
     except sr.UnknownValueError:
         print("Uknown value")
     except sr.RequestError:
@@ -43,6 +50,7 @@ def interrupt_callback():
     global interrupted
     return interrupted
 
+# models = os.listdir('./models')
 models = ['models/computer1.pmdl', 'models/computer2.pmdl']
 
 # capture SIGINT signal, e.g., Ctrl+C

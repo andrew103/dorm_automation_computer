@@ -9,12 +9,16 @@ def index():
 
 @app.route('/lights')
 def lights():
-    pass
+    return "Lights"
 
 @app.route('/lights_off')
 def lights_off():
-    pass
+    return "Lights off"
 
 @app.route('/fade_lights')
 def fade_lights():
-    pass
+    return "Fade lights"
+
+@app.route('/cancel')
+def cancel():
+    return "Cancel command"

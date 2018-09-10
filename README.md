@@ -9,3 +9,19 @@ https://dordnung.de/raspberrypi-ledstrip/
 https://www.raspberrypi.org/documentation/usage/gpio/README.md
 
 http://docs.kitt.ai/snowboy/
+
+
+Required installations outside of pip
+-------------------------------------
+
+* `sudo apt install python-pyaudio`
+* `sudo apt install libatlas-base-dev`
+
+
+Required pip packages
+------------------------
+* SpeechRecognition
+* flask
+* requests
+* pygame
+* gTTS

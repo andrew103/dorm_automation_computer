@@ -1,4 +1,4 @@
-from snowboy import snowboydecoder
+from snowboy_ubuntu import snowboydecoder
 import sys, os
 import signal
 import speech_recognition as sr

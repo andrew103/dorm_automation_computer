@@ -41,12 +41,9 @@ TO DO
 
 #### General
 
-* setup basic Flask RESTful server
-* setup basic UI that listens for "computer" command and responds with Star Trek computer sound
 * figure out how to run python scripts on Raspberri PI boot
 * 404 error handling
 * python error handling for unknown errors
-* find audio files for computer sounds
 
 #### Device control
 
@@ -82,10 +79,10 @@ WORKING ON NOW
 
 #### General
 
-* figure out speech to text engine
-  * speech_recognition source file located at /home/andrew/.local/lib/python3.6/site-packages
-  * speech_recognition library listen function has parameter for snowboy hotword detection
-  * snowboy hotword model located in downloads
+* find audio files for computer sounds
+* setup basic Flask RESTful server
+* setup basic UI that listens for "computer" command and responds with Star Trek computer sound
+* parse STT output for server request
 
 #### Device control
 
@@ -100,6 +97,9 @@ DONE
 #### General
 
 * LED control
+* figure out speech to text engine
+  * speech_recognition source file located at /home/andrew/.local/lib/python3.6/site-packages
+  * speech_recognition library listen function has parameter for snowboy hotword detection
 
 #### Device control
 

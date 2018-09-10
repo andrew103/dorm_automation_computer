@@ -3,6 +3,7 @@ import sys, os
 import signal
 import speech_recognition as sr
 from pygame import mixer
+import requests
 
 r = sr.Recognizer()
 m = sr.Microphone()

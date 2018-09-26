@@ -10,12 +10,16 @@ https://www.raspberrypi.org/documentation/usage/gpio/README.md
 
 http://docs.kitt.ai/snowboy/
 
+https://www.raspberrypi.org/forums/viewtopic.php?t=136974
+
+https://www.raspberrypi.org/forums/viewtopic.php?f=37&t=97702
 
 Required installations outside of pip
 -------------------------------------
 
 * `sudo apt install python-pyaudio`
 * `sudo apt install libatlas-base-dev`
+* `sudo apt install sox`
 
 
 Required pip packages

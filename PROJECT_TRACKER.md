@@ -99,7 +99,7 @@ DONE
 * LED control
 * figure out speech to text engine
   * speech_recognition source file located at /home/andrew/.local/lib/python3.6/site-packages
-  * speech_recognition library listen function has parameter for snowboy hotword detection
+  * speech_recognition library listen function has parameter for snowboy hotword detection (not used)
 
 #### Device control
 
@@ -115,6 +115,22 @@ BUGS
 
 * speech input hangs on SpeechRecognition library `listen()` function/crashes the program
 * pygame mixer causes audio distortion sometimes on playback (research other playback libraries)
+* running UI on raspi throws `IOError: [Errno -9985] Device unavailable`
+* mic input volume too low (probably need better quality mic)
+
+#### Device control
+
+#### Flask routes
+
+#### UI commands
+
+
+FIXED BUGS
+---------------------------------------
+
+#### General
+
+* trying to run UI on raspi throws "Invalid Sample rate error"
 
 #### Device control
 

@@ -20,6 +20,7 @@ Required installations outside of pip
 * `sudo apt install python-pyaudio`
 * `sudo apt install libatlas-base-dev`
 * `sudo apt install sox`
+* `sudo apt install flac`
 
 
 Required pip packages

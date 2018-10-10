@@ -110,9 +110,10 @@ class HotwordDetector(object):
             format=self.audio.get_format_from_width(
                 self.detector.BitsPerSample() / 8),
             channels=self.detector.NumChannels(),
-            rate=self.detector.SampleRate(),
+            rate=48000, #self.detector.SampleRate(),
             frames_per_buffer=2048,
-            stream_callback=audio_callback)
+            stream_callback=audio_callback,
+            input_device_index=2) # this is an added line to make things work
 
 
     def start(self, detected_callback=play_audio_file,

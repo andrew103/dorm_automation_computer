@@ -1,5 +1,4 @@
-from snowboy_ubuntu import snowboydecoder # needs to be changed based on used platform
-import sys, os
+import sys, os, platform
 import signal
 import speech_recognition as sr
 from pygame import mixer
@@ -44,6 +43,10 @@ def receive_command():
 # models = os.listdir('./models')
 models = ['models/computer1.pmdl', 'models/computer2.pmdl']
 callbacks = [lambda: receive_command()]*len(models)
+if platform.linux_distribution()[0] == 'Ubuntu':
+    snowboy_instance = 'snowboy_ubuntu'
+elif platform.linux_distribution()[0] == 'debian':
+    snowboy_instance = 'snowboy_pi'
 
 # main loop
 with m as source: r.adjust_for_ambient_noise(source)
@@ -51,7 +54,7 @@ while True:
     with m as source:
         print("Listening...")
         try:
-            r.snowboy_wait_for_hot_word('snowboy_ubuntu', models, source)
+            r.snowboy_wait_for_hot_word(snowboy_instance, models, source)
             receive_command()
         except KeyboardInterrupt:
             break

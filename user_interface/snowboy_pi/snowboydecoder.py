@@ -110,7 +110,7 @@ class HotwordDetector(object):
             format=self.audio.get_format_from_width(
                 self.detector.BitsPerSample() / 8),
             channels=self.detector.NumChannels(),
-            rate=48000, #self.detector.SampleRate(),
+            rate=self.detector.SampleRate(),
             frames_per_buffer=2048,
             stream_callback=audio_callback,
             input_device_index=2) # this is an added line to make things work

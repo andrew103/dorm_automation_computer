@@ -114,6 +114,8 @@ BUGS
 #### General
 
 * pygame mixer causes audio distortion sometimes on playback (research other playback libraries)
+* hotword detection struggling to work on raspi (activates randomly with various noises but not with hotword)
+  * try using better models?
 
 #### Device control
 

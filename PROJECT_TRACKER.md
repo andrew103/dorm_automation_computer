@@ -113,13 +113,7 @@ BUGS
 
 #### General
 
-* speech input hangs on SpeechRecognition library `listen()` function/crashes the program
 * pygame mixer causes audio distortion sometimes on playback (research other playback libraries)
-* mic input volume too low (probably need better quality mic)
-  * snowboy has a gain parameter I can try setting
-* running UI on raspi throws `IOError: [Errno -9998] Invalid number of channels`
-  * caused by multiple more than one microphone object being created in a single thread by both snowboy and speech_recognition
-  * multithreading/processing didn't fix issue, next attempt is to use built in snowboy implementation in speech_recognition
 
 #### Device control
 
@@ -137,8 +131,18 @@ FIXED BUGS
   * solved by manually entering the sample rate into the audio.open() function in snowboydetector.py
 * running UI on raspi throws `IOError: [Errno -9985] Device unavailable`
   * solution is to specify `device_index` parameter in Microphone object creation with speech_recognition
+* running UI on raspi throws `IOError: [Errno -9998] Invalid number of channels`
+  * caused by multiple more than one microphone object being created in a single thread by both snowboy and speech_recognition
+  * multithreading/processing didn't fix issue, next attempt is to use built in snowboy implementation in speech_recognition
+  * fixed by using the snowboy implementation in speech_recognition
+* speech input hangs on SpeechRecognition library `listen()` function/crashes the program
+  * fixed by adding timeout parameter
 
 #### Device control
+
+* mic input volume too low (probably need better quality mic)
+  * snowboy has a gain parameter I can try setting
+  * solved with better quality mic
 
 #### Flask routes
 

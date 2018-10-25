@@ -5,7 +5,7 @@ from pygame import mixer
 import requests
 
 r = sr.Recognizer()
-m = sr.Microphone()
+m = sr.Microphone(sample_rate=16000) # snowboy requires a 16kHz sample rate
 
 abs_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 

@@ -16,6 +16,7 @@ def receive_command():
     mixer.music.load(os.path.join(abs_path, 'audio/computerbeep_42.mp3'))
     mixer.music.play()
 
+    r.adjust_for_ambient_noise(source)
     try:
         audio = r.listen(source, timeout=10)
         value = r.recognize_google(audio)
@@ -41,7 +42,7 @@ def receive_command():
 #=================================== BEGIN SNOWBOY DETECTOR CONFIG AND LISTENER
 
 # models = os.listdir('./models')
-models = ['models/computer1.pmdl', 'models/computer2.pmdl']
+models = ['models/computer3.pmdl', 'models/computer4.pmdl']
 callbacks = [lambda: receive_command()]*len(models)
 if platform.linux_distribution()[0] == 'Ubuntu':
     snowboy_instance = 'snowboy_ubuntu'
@@ -49,7 +50,6 @@ elif platform.linux_distribution()[0] == 'debian':
     snowboy_instance = 'snowboy_pi'
 
 # main loop
-with m as source: r.adjust_for_ambient_noise(source)
 while True:
     with m as source:
         print("Listening...")

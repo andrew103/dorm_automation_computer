@@ -42,7 +42,7 @@ def receive_command():
 #=================================== BEGIN SNOWBOY DETECTOR CONFIG AND LISTENER
 
 # models = os.listdir('./models')
-models = ['models/computer3.pmdl', 'models/computer4.pmdl']
+models = ['models/computer.umdl']
 callbacks = [lambda: receive_command()]*len(models)
 if platform.linux_distribution()[0] == 'Ubuntu':
     snowboy_instance = 'snowboy_ubuntu_py3'

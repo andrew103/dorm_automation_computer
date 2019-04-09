@@ -21,6 +21,8 @@ Required installations outside of pip
 * `sudo apt install libatlas-base-dev`
 * `sudo apt install sox`
 * `sudo apt install flac`
+* `sudo apt install libasound-dev`
+* Follow instructions at https://stackoverflow.com/questions/20023131/cannot-install-pyaudio-gcc-error
 
 
 Required pip packages

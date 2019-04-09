@@ -47,7 +47,7 @@ callbacks = [lambda: receive_command()]*len(models)
 if platform.linux_distribution()[0] == 'Ubuntu':
     snowboy_instance = 'snowboy_ubuntu_py3'
 elif platform.linux_distribution()[0] == 'debian':
-    snowboy_instance = 'snowboy_pi'
+    snowboy_instance = 'snowboy_pi_py3'
 
 # main loop
 while True:

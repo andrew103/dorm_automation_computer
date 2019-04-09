@@ -1,5 +1,6 @@
 **WARNING: For the SnowBoy hotword detection library, it will only work if the correct binary is used. The default on this repository is the binary for Ubuntu. Binaries for other operating systems can be found on the [SnowBoy documentation page](http://docs.kitt.ai/snowboy/). The name of the binary file that differs for each operating system is `_snowboydetect.so`**
 
+**Note: The SnowBoy hotword detection library requires that specific binaries be used for certain operating systems and languages. Prebuilt binaries can be found on the [SnowBoy documentation page](http://docs.kitt.ai/snowboy/). Instructions for building a custom binary can be found on the [Snowboy GitHub repository README](https://github.com/Kitt-AI/snowboy)**
 
 Sources
 -----------------

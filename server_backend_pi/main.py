@@ -18,10 +18,10 @@ r = 255.0
 g = 0.0
 b = 0.0
 
-def fadeLights():
-    global r
-    global g
-    global b
+def fadeLights(r, g, b):
+#    global r
+#    global g
+#    global b
     while not abort:
         if r == 255 and b == 0 and g < 255:
             g += 1
@@ -99,8 +99,9 @@ def lights_off():
 
 @app.route('/fade_lights')
 def fade_lights():
+    global r, g, b
     abort = False
-    start_new_thread(fadeLights, ())
+    start_new_thread(fadeLights, (r, g, b))
     return "Fade lights"
 
 @app.route('/cancel')

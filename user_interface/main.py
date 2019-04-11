@@ -3,12 +3,16 @@ import signal
 import speech_recognition as sr
 from pygame import mixer
 import requests
+import time
 
 if platform.linux_distribution()[0] == 'Ubuntu':
     from snowboy_ubuntu_py3 import snowboydecoder
 elif platform.linux_distribution()[0] == 'debian':
     from snowboy_pi_py3 import snowboydecoder
+    import pigpio
+    pi = pigpio.pi()
 
+LED_PIN = 4
 abs_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 def receive_command(fname):
@@ -38,6 +42,8 @@ def receive_command(fname):
         print("Recognizer timed out")
 
     os.remove(fname)
+    if platform.linux_distribution()[0] == 'debian':
+         pi.set_PWM_dutycycle(LED_PIN, 0)
 
 
 #=================================== BEGIN SNOWBOY DETECTOR CONFIG AND LISTENER
@@ -48,6 +54,8 @@ model = 'models/computer.umdl'
 def detectedCallback():
     print('Computer Activated')
 
+    if platform.linux_distribution()[0] == 'debian':
+        pi.set_PWM_dutycycle(LED_PIN, 255)
     mixer.init(44100)
     mixer.music.load(os.path.join(abs_path, 'audio/computerbeep_42.mp3'))
     mixer.music.play()

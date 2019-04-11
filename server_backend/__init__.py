@@ -1,4 +1,4 @@
-from main import app
+from server_backend.main import app
 
 if __name__ == "__main__":
     app.secret_key = "dorm_comp_password"

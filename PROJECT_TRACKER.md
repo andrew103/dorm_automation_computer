@@ -52,8 +52,6 @@ TO DO
 
 #### Flask routes
 
-* Flask route for "lights on"
-* Flask route for "lights off"
 * Flask route for "switch audio source"
   * sub-route for "andrew"
   * sub-route for "matt" or "matthew"
@@ -63,8 +61,6 @@ TO DO
 
 #### UI commands
 
-* UI command "lights on"
-* UI command "lights off"
 * UI command "switch audio source"
   * UI command "andrew"
   * UI command "matt" or "matthew"
@@ -80,8 +76,7 @@ WORKING ON NOW
 #### General
 
 * find audio files for computer sounds
-* setup basic Flask RESTful server
-* setup basic UI that listens for "computer" command and responds with Star Trek computer sound
+* restructure to use config yaml file for information storage and transfer
 * parse STT output for server request
 
 #### Device control
@@ -100,12 +95,20 @@ DONE
 * figure out speech to text engine
   * speech_recognition source file located at /home/andrew/.local/lib/python3.6/site-packages
   * speech_recognition library listen function has parameter for snowboy hotword detection (not used)
+* setup basic Flask RESTful server
+* setup basic UI that listens for "computer" command and responds with Star Trek computer sound
 
 #### Device control
 
 #### Flask routes
 
+* Flask route for "lights on"
+* Flask route for "lights off"
+
 #### UI commands
+
+* UI command "lights on"
+* UI command "lights off"
 
 
 BUGS
@@ -114,8 +117,6 @@ BUGS
 #### General
 
 * pygame mixer causes audio distortion sometimes on playback (research other playback libraries)
-* hotword detection struggling to work on raspi (activates randomly with various noises but not with hotword)
-  * try using better models?
 
 #### Device control
 
@@ -139,6 +140,9 @@ FIXED BUGS
   * fixed by using the snowboy implementation in speech_recognition
 * speech input hangs on SpeechRecognition library `listen()` function/crashes the program
   * fixed by adding timeout parameter
+* hotword detection struggling to work on raspi (activates randomly with various noises but not with hotword)
+  * try using better models?
+  * solved by getting updated Snowboy library with needed functionality
 
 #### Device control
 

@@ -1,4 +1,13 @@
-test:
-  - 1
-  - 2
-  - 3
+data:
+  constants:
+    'LED_PIN': 4
+    'RED_PIN': 17
+    'GREEN_PIN': 22
+    'BLUE_PIN': 24
+  default_commands:
+    - 'lights_on'
+    - 'lights_off'
+    - 'fade_lights'
+    - 'cancel'
+  user_commands:
+  server_response:

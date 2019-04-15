@@ -3,15 +3,17 @@ from flask import url_for, redirect, flash
 from _thread import start_new_thread
 import pigpio
 import time
-
-RED_PIN = 17
-GREEN_PIN = 22
-BLUE_PIN = 24
+import yaml
 
 app = Flask(__name__)
 pi = pigpio.pi()
+config = yaml.load(open('config.yaml'), Loader=yaml.Loader)
 
 # Global variables for LED light control
+RED_PIN = config['data']['constants']['RED_PIN']
+GREEN_PIN = config['data']['constants']['GREEN_PIN']
+BLUE_PIN = config['data']['constants']['BLUE_PIN']
+
 bright = 255
 abort = False
 r = 255.0
@@ -60,13 +62,19 @@ def setLights(pin, brightness):
     realBrightness = int(int(brightness) * (float(bright) / 255.0))
     pi.set_PWM_dutycycle(pin, realBrightness)
 
+def updateConfig():
+    global config
+    config = yaml.load(open('config.yaml'), Loader=yaml.Loader)
+
 @app.route('/')
 def index():
+    updateConfig()
     return "Index page"
 
 @app.route('/lights')
 @app.route('/lights_on')
 def lights():
+    updateConfig()
     global bright
     global abort
     abort = True
@@ -81,6 +89,7 @@ def lights():
 
 @app.route('/lights_off')
 def lights_off():
+    updateConfig()
     global bright
     global abort
     abort = True
@@ -99,6 +108,7 @@ def lights_off():
 
 @app.route('/fade_lights')
 def fade_lights():
+    updateConfig()
     global r, g, b
     abort = False
     start_new_thread(fadeLights, (r, g, b))
@@ -106,4 +116,5 @@ def fade_lights():
 
 @app.route('/cancel')
 def cancel():
+    updateConfig()
     return "Cancel command"

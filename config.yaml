@@ -4,6 +4,8 @@ data:
     'RED_PIN': 17
     'GREEN_PIN': 22
     'BLUE_PIN': 24
+  variables:
+    'silent_mode': False
   default_commands:
     - 'lights_on'
     - 'lights_off'

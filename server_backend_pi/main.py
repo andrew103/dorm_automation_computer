@@ -20,10 +20,8 @@ r = 255.0
 g = 0.0
 b = 0.0
 
-def fadeLights(r, g, b):
-#    global r
-#    global g
-#    global b
+def fadeLights():
+    global r, g, b
     while not abort:
         if r == 255 and b == 0 and g < 255:
             g += 1
@@ -77,12 +75,14 @@ def lights():
     updateConfig()
     global bright
     global abort
+    global r, g, b
+    r, g, b = 255, 147, 41
     abort = True
     for i in range(256):
         bright = i
-        setLights(RED_PIN, 255)
-        setLights(GREEN_PIN, 147)
-        setLights(BLUE_PIN, 41)
+        setLights(RED_PIN, r)
+        setLights(GREEN_PIN, g)
+        setLights(BLUE_PIN, b)
         time.sleep(0.005)
 
     return "Lights"
@@ -92,14 +92,15 @@ def lights_off():
     updateConfig()
     global bright
     global abort
-    abort = True
+    global r, g, b
     for i in reversed(range(256)):
         bright = i
-        setLights(RED_PIN, 255)
-        setLights(GREEN_PIN, 147)
-        setLights(BLUE_PIN, 41)
+        setLights(RED_PIN, r)
+        setLights(GREEN_PIN, g)
+        setLights(BLUE_PIN, b)
         time.sleep(0.005)
 
+    abort = True
     bright = 255
     setLights(RED_PIN, 0)
     setLights(GREEN_PIN, 0)
@@ -109,9 +110,9 @@ def lights_off():
 @app.route('/fade_lights')
 def fade_lights():
     updateConfig()
-    global r, g, b
+    #global r, g, b
     abort = False
-    start_new_thread(fadeLights, (r, g, b))
+    start_new_thread(fadeLights, ())
     return "Fade lights"
 
 @app.route('/cancel')

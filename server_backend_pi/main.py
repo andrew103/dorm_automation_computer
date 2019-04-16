@@ -69,7 +69,7 @@ def updateConfig():
 @app.route('/')
 def index():
     updateConfig()
-    return "Index page"
+    return "Command does not exist"
 
 @app.route('/lights')
 @app.route('/lights_on')

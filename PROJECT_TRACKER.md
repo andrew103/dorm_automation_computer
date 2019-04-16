@@ -76,7 +76,6 @@ WORKING ON NOW
 #### General
 
 * find audio files for computer sounds
-* restructure to use config yaml file for information storage and transfer
 * parse STT output for server request
 
 #### Device control
@@ -97,6 +96,7 @@ DONE
   * speech_recognition library listen function has parameter for snowboy hotword detection (not used)
 * setup basic Flask RESTful server
 * setup basic UI that listens for "computer" command and responds with Star Trek computer sound
+* restructure to use config yaml file for information storage and transfer
 
 #### Device control
 
@@ -117,6 +117,7 @@ BUGS
 #### General
 
 * pygame mixer causes audio distortion sometimes on playback (research other playback libraries)
+* 'fade lights' command doesn't work after 'lights off' command is given
 
 #### Device control
 

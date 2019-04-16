@@ -9,8 +9,8 @@ if platform.linux_distribution()[0] == 'debian':
     import pigpio
     pi = pigpio.pi()
 
-config = {}
-LED_PIN = 4
+config = yaml.load(open('config.yaml'), Loader=yaml.Loader)
+LED_PIN = config['data']['constants']['LED_PIN']
 abs_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 def receive_command(fname):
@@ -22,7 +22,14 @@ def receive_command(fname):
     try:
         value = r.recognize_google(audio)
         # print(value)
-        uri = value.replace(" ", "_")
+        value = value.replace(" ", "_")
+        uri = ""
+
+        for command in config['data']['default_commands']:
+            if command in value:
+                uri = command
+                break
+
         response = requests.get('http://127.0.0.1:8000/{}'.format(uri))
 
         if response.status_code != 200:
@@ -50,9 +57,10 @@ def detectedCallback():
         pi.set_PWM_dutycycle(LED_PIN, 255)
 
     updateConfig()
-    mixer.init(44100)
-    mixer.music.load(os.path.join(abs_path, 'user_interface/audio/computerbeep_42.mp3'))
-    mixer.music.play()
+    if not config['data']['variables']['silent_mode']:
+        mixer.init(44100)
+        mixer.music.load(os.path.join(abs_path, 'user_interface/audio/computerbeep_42.mp3'))
+        mixer.music.play()
 
 def updateConfig():
     global config

@@ -3,25 +3,25 @@ from flask import url_for, redirect, flash
 from _thread import start_new_thread
 import pigpio
 import time
-
-RED_PIN = 17
-GREEN_PIN = 22
-BLUE_PIN = 24
+import yaml
 
 app = Flask(__name__)
 pi = pigpio.pi()
+config = yaml.load(open('config.yaml'), Loader=yaml.Loader)
 
 # Global variables for LED light control
+RED_PIN = config['data']['constants']['RED_PIN']
+GREEN_PIN = config['data']['constants']['GREEN_PIN']
+BLUE_PIN = config['data']['constants']['BLUE_PIN']
+
 bright = 255
 abort = False
 r = 255.0
 g = 0.0
 b = 0.0
 
-def fadeLights(r, g, b):
-#    global r
-#    global g
-#    global b
+def fadeLights():
+    global r, g, b
     while not abort:
         if r == 255 and b == 0 and g < 255:
             g += 1
@@ -60,37 +60,47 @@ def setLights(pin, brightness):
     realBrightness = int(int(brightness) * (float(bright) / 255.0))
     pi.set_PWM_dutycycle(pin, realBrightness)
 
+def updateConfig():
+    global config
+    config = yaml.load(open('config.yaml'), Loader=yaml.Loader)
+
 @app.route('/')
 def index():
-    return "Index page"
+    updateConfig()
+    return "Command does not exist"
 
 @app.route('/lights')
 @app.route('/lights_on')
 def lights():
+    updateConfig()
     global bright
     global abort
+    global r, g, b
+    r, g, b = 255, 147, 41
     abort = True
     for i in range(256):
         bright = i
-        setLights(RED_PIN, 255)
-        setLights(GREEN_PIN, 147)
-        setLights(BLUE_PIN, 41)
+        setLights(RED_PIN, r)
+        setLights(GREEN_PIN, g)
+        setLights(BLUE_PIN, b)
         time.sleep(0.005)
 
     return "Lights"
 
 @app.route('/lights_off')
 def lights_off():
+    updateConfig()
     global bright
     global abort
-    abort = True
+    global r, g, b
     for i in reversed(range(256)):
         bright = i
-        setLights(RED_PIN, 255)
-        setLights(GREEN_PIN, 147)
-        setLights(BLUE_PIN, 41)
+        setLights(RED_PIN, r)
+        setLights(GREEN_PIN, g)
+        setLights(BLUE_PIN, b)
         time.sleep(0.005)
 
+    abort = True
     bright = 255
     setLights(RED_PIN, 0)
     setLights(GREEN_PIN, 0)
@@ -99,11 +109,13 @@ def lights_off():
 
 @app.route('/fade_lights')
 def fade_lights():
-    global r, g, b
+    updateConfig()
+    #global r, g, b
     abort = False
-    start_new_thread(fadeLights, (r, g, b))
+    start_new_thread(fadeLights, ())
     return "Fade lights"
 
 @app.route('/cancel')
 def cancel():
+    updateConfig()
     return "Cancel command"

@@ -16,6 +16,7 @@ IDEAS
 * setup a sort of skype
   * be able to go to a website from remote location that can "call" the dorm computer
 * use a config file that saves the state of the program (e.g. a YAML file or something) so that in the event of a reboot/program stop, when the program starts again, it picks up where it left off
+* use 'black' python package to format custom commands
 
 #### Device control
 

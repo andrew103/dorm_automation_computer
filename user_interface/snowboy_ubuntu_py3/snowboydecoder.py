@@ -124,6 +124,7 @@ class HotwordDetector(object):
 
         self.ring_buffer = RingBuffer(
             self.detector.NumChannels() * self.detector.SampleRate() * 5)
+        self.auto_trigger_flag = False
 
     def start(self, detected_callback=play_audio_file,
               interrupt_check=lambda: False,
@@ -205,6 +206,10 @@ class HotwordDetector(object):
             if status == -1:
                 logger.warning("Error initializing streams or reading audio data")
 
+            if self.auto_trigger_flag == True:
+                status = 1
+                self.auto_trigger_flag = False
+
             #small state machine to handle recording of phrase after keyword
             if state == "PASSIVE":
                 if status > 0: #key word found
@@ -246,6 +251,9 @@ class HotwordDetector(object):
                 self.recordedData.append(data)
 
         logger.debug("finished.")
+
+    def auto_trigger(self):
+        self.auto_trigger_flag = True
 
     def saveMessage(self):
         """

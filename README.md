@@ -16,12 +16,9 @@ https://www.raspberrypi.org/forums/viewtopic.php?f=37&t=97702
 Required installations outside of pip
 -------------------------------------
 
-* `sudo apt install python-pyaudio`
-* `sudo apt install libatlas-base-dev`
-* `sudo apt install sox`
-* `sudo apt install flac`
-* `sudo apt install libasound-dev`
-* Follow instructions at https://stackoverflow.com/questions/20023131/cannot-install-pyaudio-gcc-error
+* `sudo apt install python3-pyaudio libatlas-base-dev sox flac`
+* `sudo apt install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0`
+* Follow instructions at https://stackoverflow.com/questions/20023131/cannot-install-pyaudio-gcc-error if error encountered during pip install
 
 
 Required pip packages

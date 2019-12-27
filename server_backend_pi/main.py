@@ -111,6 +111,7 @@ def lights_off():
 def fade_lights():
     updateConfig()
     #global r, g, b
+    global abort
     abort = False
     start_new_thread(fadeLights, ())
     return "Fade lights"
